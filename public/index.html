@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detroit Hub Updates</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/alertifyjs/dist/js/alertify.js" defer></script>
+
+	<link rel="import" href="/bower_components/polymer/polymer.html">
+	<link rel="import" href="/root-element.html">
+
+	<style>
+
+	</style>
+
+  <script>
+    $(document).ready(function() {
+      alertify.logPosition("top right");
+      alertify.maxLogItems(10);
+    });
+  </script>
+
+  <script>
+    document.addEventListener("iron-ajax-error", function(e) {
+      alertify.error("Request could not be completed.");
+    });
+  </script>
+</head>
+
+<body>
+	<root-element></root-element>
+</body>
+</html>

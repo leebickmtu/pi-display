@@ -1,0 +1,9 @@
+node_modules
+public/bower_components
+public/**/*-styles.html
+npm-debug.log
+*.log
+.DS_Store
+temp
+.github/
+

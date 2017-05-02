@@ -1,0 +1,20 @@
+{
+	"name": "interface",
+	"version": "1.0.0",
+	"private": true,
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"body-parser": "^1.15.2",
+		"express": "^4.14.0",
+    "multer": "^1.2.0",
+		"serve-favicon": "^2.3.2"
+	},
+	"devDependencies": {
+
+	}
+}

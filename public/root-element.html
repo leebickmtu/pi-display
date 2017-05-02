@@ -1,0 +1,112 @@
+<!-- import polymer -->
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<!-- polymer components -->
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/px-file-upload/px-file-upload.html">
+
+
+<dom-module id='root-element'>
+	<template>
+
+    <style>
+      .spacer{
+        height: 15px;
+      }
+    </style>
+
+    <iron-ajax
+      id='upload-data'
+      url='/api/upload'
+      method='POST'
+      on-response='_uploadHandler'
+      handle-as='json'
+      bubbles>
+    </iron-ajax>
+
+    <iron-ajax
+      id='run-it'
+      url='/api/runIt'
+      method='GET'
+      on-response='_runItHandler'
+      handle-as='json'
+      bubbles>
+    </iron-ajax>
+
+    <iron-ajax
+      id='stop-it'
+      url='/api/stopIt'
+      method='GET'
+      on-response='_stopItHandler'
+      handle-as='json'
+      bubbles>
+    </iron-ajax>
+
+		<px-file-upload id="file-upload" accept=".ppt"></px-file-upload>
+
+    <div class="spacer"></div>
+
+    <button on-click="_runIt">Start</button>
+    <button on-click="_stopIt">Stop</button>
+
+    <div class="spacer"></div>
+
+    <form method="get" action="/api/file">
+      <button type="submit">Download</button>
+    </form>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'root-element',
+
+			properties: {
+
+			},
+
+			ready: function() {
+        this.listen(this.$['file-upload'], 'px-file-upload-files-changed', '_uploadFileChanged');
+			},
+
+      _uploadFileChanged: function() {
+        if (this.$['file-upload'].files.length == 0) {
+          return;
+        }
+
+        var file = this.$['file-upload'].files[0];
+
+        if (!file.name.endsWith('.ppt')) {
+          alertify.error('File must be type (ppt).');
+          return;
+        }
+
+        var formData = new FormData();
+        formData.append('file', file);
+
+        this.$['upload-data'].body = formData;
+        this.$['upload-data'].generateRequest();
+      },
+
+      _runIt: function() {
+        this.$['run-it'].generateRequest();
+      },
+
+      _stopIt: function() {
+        this.$['stop-it'].generateRequest();
+      },
+
+      _uploadHandler: function(e) {
+        alertify.success("File uploaded successfully");
+      },
+
+      _runItHandler: function(e) {
+        alertify.success("Running");
+      },
+
+      _stopItHandler: function(e) {
+        alertify.success("Stopped");
+      }
+
+		});
+	</script>
+</dom-module>

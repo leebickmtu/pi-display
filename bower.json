@@ -1,0 +1,21 @@
+{
+	"name": "interface",
+	"version": "1.0.0",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"bower_components"
+	],
+	"dependencies": {
+    "alertifyjs": "^1.0.11",
+    "iron-ajax": "^1.4.4",
+		"jquery": "^3.1.1",
+		"polymer": "^1.7.0",
+		"px-file-upload": "^0.4.12",
+		"px-polymer-font-awesome": "^1.1.5"
+	},
+	"devDependencies": {
+		"px-buttons-design": "^1.1.8",
+		"px-starter-kit-design": "^0.7.4"
+	}
+}
