@@ -1,6 +1,7 @@
 node_modules
 public/bower_components
 public/**/*-styles.html
+uploads/**
 npm-debug.log
 *.log
 .DS_Store
